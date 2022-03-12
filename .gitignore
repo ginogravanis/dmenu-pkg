@@ -1,0 +1,5 @@
+config.def.h
+*.diff
+dmenu*
+pkg
+src
