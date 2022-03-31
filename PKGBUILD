@@ -7,10 +7,8 @@ pkgdesc='Dynamic menu for X'
 arch=('i686' 'x86_64')
 url='https://tools.suckless.org/dmenu/'
 license=('MIT')
-depends=('sh' 'glibc' 'coreutils' 'libx11' 'libxinerama' 'libxft' 'freetype2' 'fontconfig')
+depends=('libxft' 'libxinerama')
 makedepends=('git')
-provides=()
-conflicts=()
 source=(
    'git+https://git.suckless.org/dmenu'
    'https://tools.suckless.org/dmenu/patches/border/dmenu-border-4.9.diff'
