@@ -25,8 +25,8 @@ prepare() {
    for patch in "${source[@]:1}"; do
       patch -d "$srcroot" -p1 -i "$BUILDDIR/$(basename $patch)"
    done
-   cp "$BUILDDIR/config.h" "$srcroot/"
-   cp "$srcroot/config.def.h" "$BUILDDIR/"
+   patch -d "$srcroot" -p1 -i "$BUILDDIR/config.diff"
+   cp "$srcroot/config.def.h" "$srcroot/config.h"
 }
 
 pkgver() {
