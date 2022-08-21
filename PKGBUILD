@@ -23,8 +23,10 @@ md5sums=(
 prepare() {
    local srcroot="$srcdir/$pkgname"
    for patch in "${source[@]:1}"; do
+      echo "# Applying $(basename $patch) ..."
       patch -d "$srcroot" -p1 -i "$BUILDDIR/$(basename $patch)"
    done
+   patch -d "$srcroot" -p1 -i "$BUILDDIR/password.diff"
    patch -d "$srcroot" -p1 -i "$BUILDDIR/config.diff"
    cp "$srcroot/config.def.h" "$srcroot/config.h"
 }
