@@ -24,8 +24,8 @@ md5sums=(
 prepare() {
    local srcroot="$srcdir/$pkgname"
    for patch in "${source[@]:1}"; do
-      echo "# Applying $(basename $patch) ..."
-      patch -d "$srcroot" -p1 -i "$BUILDDIR/$(basename $patch)"
+      echo "# Applying $(basename "$patch") ..."
+      patch -d "$srcroot" -p1 -i "$BUILDDIR/$(basename "$patch")"
    done
    patch -d "$srcroot" -p1 -i "$BUILDDIR/password.diff"
    patch -d "$srcroot" -p1 -i "$BUILDDIR/config.diff"
@@ -42,7 +42,6 @@ build() {
 
 package() {
    local srcroot="$srcdir/$pkgname"
-   local license_dir="$pkgdir/usr/share/licenses/$pkgname"
    make -C "$srcdir/$pkgname" PREFIX=/usr DESTDIR="$pkgdir/" install
    install -Dm644 "$srcroot/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
    install -Dm644 "$srcroot/README" "$pkgdir/usr/share/doc/$pkgname/README"
