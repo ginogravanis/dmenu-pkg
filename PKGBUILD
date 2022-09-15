@@ -13,12 +13,10 @@ makedepends=('git')
 source=(
    'git+https://git.suckless.org/dmenu'
    'https://tools.suckless.org/dmenu/patches/border/dmenu-border-4.9.diff'
-   'https://tools.suckless.org/dmenu/patches/gruvbox/dmenu-gruvbox-20210329-9ae8ea5.diff'
 )
 md5sums=(
    'SKIP'
    '4012371a7a77354f4111121ca19c8cd1'
-   '7a2109e8854c8073d5e68f4fe3e98d10'
 )
 
 prepare() {
