@@ -14,6 +14,10 @@ source=(
    'git+https://git.suckless.org/dmenu'
    'https://tools.suckless.org/dmenu/patches/border/dmenu-border-4.9.diff'
 )
+extra_patches=(
+   'password.diff'
+   'config.diff'
+)
 md5sums=(
    'SKIP'
    '4012371a7a77354f4111121ca19c8cd1'
@@ -21,12 +25,10 @@ md5sums=(
 
 prepare() {
    local srcroot="$srcdir/$pkgname"
-   for patch in "${source[@]:1}"; do
+   for patch in "${source[@]:1}" "${extra_patches[@]}"; do
       echo "# Applying $(basename "$patch") ..."
       patch -d "$srcroot" -p1 -i "$BUILDDIR/$(basename "$patch")"
    done
-   patch -d "$srcroot" -p1 -i "$BUILDDIR/password.diff"
-   patch -d "$srcroot" -p1 -i "$BUILDDIR/config.diff"
    cp "$srcroot/config.def.h" "$srcroot/config.h"
 }
 
