@@ -10,27 +10,10 @@ url='https://tools.suckless.org/dmenu/'
 license=('MIT')
 depends=('libxft' 'libxinerama')
 makedepends=('git')
-source=(
-   'git+https://git.suckless.org/dmenu'
-   'https://tools.suckless.org/dmenu/patches/border/dmenu-border-4.9.diff'
-)
-extra_patches=(
-   'password.diff'
-   'config.diff'
-)
+source=('git+https://github.com/ginogravanis/dmenu.git')
 md5sums=(
    'SKIP'
-   '4012371a7a77354f4111121ca19c8cd1'
 )
-
-prepare() {
-   local srcroot="$srcdir/$pkgname"
-   for patch in "${source[@]:1}" "${extra_patches[@]}"; do
-      echo "# Applying $(basename "$patch") ..."
-      patch -d "$srcroot" -p1 -i "$BUILDDIR/$(basename "$patch")"
-   done
-   cp "$srcroot/config.def.h" "$srcroot/config.h"
-}
 
 pkgver() {
    git -C "$srcdir/$pkgname" describe --long --tags | sed 's/-/./g'
